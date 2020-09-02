@@ -42,13 +42,15 @@ public class DepartmentController {
         Department department = null;
         try{
             department = departmentService.findDepartmentById(id);
-        }catch (ErrorResponse e){
+        } catch (ErrorResponse e) {
             ErrorResponse.LogError(e);
         }
+
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Response","findDepartmentById");
         return ResponseEntity.status(HttpStatus.OK).headers(httpHeaders).body(department);
     }
+
 
     @GetMapping("/getAllDepartments")
     public ResponseEntity<List<Department>> getAllDepartments(){

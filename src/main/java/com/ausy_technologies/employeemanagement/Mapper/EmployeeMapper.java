@@ -22,6 +22,7 @@ public class EmployeeMapper {
     JobCategoriesRepository jobCategoryRepository;
 
     public EmployeeDTO convertEmployeeToDto(Employee employee){
+
         EmployeeDTO employeeDTO = new EmployeeDTO();
 
         employeeDTO.setFirstname(employee.getFirstName());
@@ -36,20 +37,19 @@ public class EmployeeMapper {
 
         try {
                 employeeDTO.setDepartment(employee.getDepartment().getDepartmentName());
-            } catch (ErrorResponse e){
+            } catch (ErrorResponse e) {
                 ErrorResponse.LogError(e);
                 employeeDTO.setDepartment(null);
             }
 
         try {
                 employeeDTO.setJobCategory(employee.getJobCategories().getJobName());
-            } catch (ErrorResponse e){
+            } catch (ErrorResponse e) {
                 ErrorResponse.LogError(e);
                 employeeDTO.setJobCategory(null);
             }
+
         return employeeDTO;
         }
-
-
 
 }

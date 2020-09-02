@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         String error = "Malformed JSON request";
@@ -27,7 +28,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 
-
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> hendleGenericException(Exception e , HttpServletResponse response)
     {
@@ -36,12 +36,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(new ApiError(httpStatus,"Internal Server Error: Unexpected Exception",e));
     }
 
-
-
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_GATEWAY,"Not supported",ex));
     }
-
 
 }

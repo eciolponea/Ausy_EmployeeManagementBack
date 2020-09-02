@@ -9,7 +9,6 @@ import com.ausy_technologies.employeemanagement.Repository.EmployeeRepository;
 import com.ausy_technologies.employeemanagement.Repository.JobCategoriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +23,6 @@ public class EmployeeService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-
     public Employee addEmployee(Employee employee, int departmentId, int jobcategoryId){
         Department department =null;
         JobCategories jobCategory = null;
@@ -32,7 +30,7 @@ public class EmployeeService {
         try {
             department = departmentRepository.findById(departmentId).get();
 
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             throw new ErrorResponse(e, "No department with this id" ,404);
         }
 
@@ -41,12 +39,10 @@ public class EmployeeService {
         } catch (RuntimeException e) {
             throw new ErrorResponse(e, "No job with this id" ,404);
         }
-
         employee.setDepartment(department);
         employee.setJobCategories(jobCategory);
 
         return employeeRepository.save(employee);
-
     }
 
 
@@ -76,6 +72,7 @@ public class EmployeeService {
                                 .filter(e -> e.getDepartment() != null)
                                 .filter(e -> e.getDepartment().getId() == departmentId)
                                  .collect(Collectors.toList());
+
         return  employeeListByDep;
     }
 
@@ -88,6 +85,7 @@ public class EmployeeService {
                             .filter(e -> e.getJobCategories() != null)
                             .filter(e -> e.getJobCategories().getId() == jobId)
                             .collect(Collectors.toList());
+
         return employeeListByJob;
     }
 
@@ -102,6 +100,7 @@ public class EmployeeService {
                 .filter(e -> e.getJobCategories() != null)
                 .filter(e -> e.getJobCategories().getId() == jobId)
                 .collect(Collectors.toList());
+
         return employeeList1;
     }
 

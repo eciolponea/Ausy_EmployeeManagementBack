@@ -14,13 +14,13 @@ public class DepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-
     public Department findDepartmentById(int id){
         if(!this.departmentRepository.findById(id).isPresent()) {
             throw new ErrorResponse("Department not found!",404);
         }
         return this.departmentRepository.findById(id).get();
     }
+
 
     public Department saveDepartment(Department department){
         if (department.getDepartmentName() != null && !department.getDepartmentName().isEmpty()) {
@@ -41,7 +41,6 @@ public class DepartmentService {
     }
 
 
-
     public void deleteDepartment(int id){
         Department department;
         try {
@@ -50,6 +49,6 @@ public class DepartmentService {
             throw new ErrorResponse(e.getMessage(),404);
         }
         departmentRepository.delete(department);
-
     }
+
 }

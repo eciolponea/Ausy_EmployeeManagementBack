@@ -1,7 +1,6 @@
 package com.ausy_technologies.employeemanagement.Model.DAO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -250,4 +249,5 @@ public class Employee {
                 ", hasDrivingLicense=" + hasDrivingLicense +
                 '}';
     }
+
 }

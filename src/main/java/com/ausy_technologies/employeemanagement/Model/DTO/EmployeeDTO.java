@@ -3,6 +3,7 @@ package com.ausy_technologies.employeemanagement.Model.DTO;
 import java.time.LocalDate;
 
 public class EmployeeDTO {
+
     private String firstname;
     private String lastname;
     private String email;
@@ -102,4 +103,5 @@ public class EmployeeDTO {
     public void setActive(boolean active) {
         this.active = active;
     }
+
 }

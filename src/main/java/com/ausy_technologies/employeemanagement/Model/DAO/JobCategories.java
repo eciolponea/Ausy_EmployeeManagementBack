@@ -1,8 +1,6 @@
 package com.ausy_technologies.employeemanagement.Model.DAO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -46,7 +44,6 @@ public class JobCategories {
         this.jobName = jobName;
     }
 
-
     @Override
     public String toString() {
         return "JobCategories{" +
@@ -54,6 +51,4 @@ public class JobCategories {
                 ", name='" + jobName + '\'' +
                 '}';
     }
-
-
 }

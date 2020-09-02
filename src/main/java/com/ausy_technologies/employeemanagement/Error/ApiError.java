@@ -2,7 +2,6 @@ package com.ausy_technologies.employeemanagement.Error;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;
-
 import java.time.LocalDateTime;
 
 public class ApiError {

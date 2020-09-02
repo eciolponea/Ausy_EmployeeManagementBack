@@ -1,8 +1,6 @@
 package com.ausy_technologies.employeemanagement.Model.DAO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,7 +8,6 @@ import java.util.List;
 @Table(name = "departments")
 
 public class Department {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

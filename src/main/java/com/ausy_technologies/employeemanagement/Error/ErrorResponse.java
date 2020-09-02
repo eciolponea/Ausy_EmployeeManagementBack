@@ -7,11 +7,12 @@ import java.util.logging.Logger;
 
 public class ErrorResponse extends RuntimeException {
     public static final Logger lgr = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-    private static boolean isDebug = java.lang.management.ManagementFactory.getRuntimeMXBean().
-            getInputArguments().toString().contains("jdwp");
+    private static boolean isDebug = java.lang.management.
+                ManagementFactory.getRuntimeMXBean().getInputArguments().toString().contains("jdwp");
 
     private String errorMessage;
     private int errorId;
+
     public ErrorResponse(){
 
     }
@@ -35,8 +36,7 @@ public class ErrorResponse extends RuntimeException {
             FileHandler fh = new FileHandler("Logger");
             lgr.addHandler(fh);
             fh.setLevel(Level.FINE);
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             lgr.log(Level.SEVERE,"The logger was not created");
         }
     }

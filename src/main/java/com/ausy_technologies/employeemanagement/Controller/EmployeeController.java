@@ -2,9 +2,7 @@ package com.ausy_technologies.employeemanagement.Controller;
 
 import com.ausy_technologies.employeemanagement.Error.ErrorResponse;
 import com.ausy_technologies.employeemanagement.Mapper.EmployeeMapper;
-import com.ausy_technologies.employeemanagement.Model.DAO.Department;
 import com.ausy_technologies.employeemanagement.Model.DAO.Employee;
-import com.ausy_technologies.employeemanagement.Model.DAO.JobCategories;
 import com.ausy_technologies.employeemanagement.Model.DTO.EmployeeDTO;
 import com.ausy_technologies.employeemanagement.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +23,7 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeMapper employeeMapper;
+
 
     @PostMapping("addEmployee/{departmentId}/{jobcategoryId}")
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee , @PathVariable int departmentId, @PathVariable int jobcategoryId)
@@ -50,7 +49,6 @@ public class EmployeeController {
     {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Response","getAllEmployees");
-
         List<Employee> employeeList;
 
         employeeList = employeeService.findAllEmployees();
@@ -109,6 +107,7 @@ public class EmployeeController {
     public ResponseEntity<List<EmployeeDTO>> getEmployeeByJob(@PathVariable int jobId){
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Response","getEmployeesByJob");
+
         List<Employee> employeeList;
         List<EmployeeDTO> employeeListDTO;
 
@@ -135,8 +134,8 @@ public class EmployeeController {
         List<EmployeeDTO> employeeListDTO;
 
         try {
-            employeeList = employeeService.findEmployeesByDepAndJob(jobId,departmentId);
-        }catch (ErrorResponse e){
+            employeeList = employeeService.findEmployeesByDepAndJob(departmentId,jobId);
+        } catch (ErrorResponse e) {
             ErrorResponse.LogError(e);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(httpHeaders).body(null);
         }
@@ -153,13 +152,14 @@ public class EmployeeController {
     public ResponseEntity<String> deleteEmployee(@PathVariable int id){
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Response","deleteEmployee");
+
         try {
             employeeService.deleteEmployee(id);
-        }
-        catch (ErrorResponse e){
+        } catch (ErrorResponse e){
             ErrorResponse.LogError(e);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(httpHeaders).body("Employee Not found");
         }
+
         return ResponseEntity.status(HttpStatus.OK).headers(httpHeaders).body("Employee Deleted");
     }
 
@@ -179,6 +179,7 @@ public class EmployeeController {
 
         return ResponseEntity.status(HttpStatus.RESET_CONTENT).headers(httpHeaders).body(employeeUpdated);
     }
+
 
     @GetMapping("/getEmployee/{id}")
     public ResponseEntity<EmployeeDTO> getEmployeeDTO(@PathVariable int id){

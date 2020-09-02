@@ -1,7 +1,6 @@
 package com.ausy_technologies.employeemanagement.Service;
 
 import com.ausy_technologies.employeemanagement.Error.ErrorResponse;
-import com.ausy_technologies.employeemanagement.Model.DAO.Department;
 import com.ausy_technologies.employeemanagement.Model.DAO.JobCategories;
 import com.ausy_technologies.employeemanagement.Repository.JobCategoriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,7 @@ public class JobCategoriesService {
         }
     }
 
+
     public List<JobCategories> findAllJobCategories(){
         List<JobCategories> jobCategoryList =  jobCategoriesRepository.findAll();
         return jobCategoryList;
@@ -44,11 +44,10 @@ public class JobCategoriesService {
         JobCategories jobCategory = null;
         try {
             jobCategory = jobCategoriesRepository.findById(id).get();
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             throw new ErrorResponse(e.getMessage(),404);
         }
         jobCategoriesRepository.delete(jobCategory);
     }
-
 
 }
